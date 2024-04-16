@@ -28,7 +28,8 @@ RUN apt-get update -y && \
     python3-yaml \
     python3-pip \
     vim \
-    skopeo
+    skopeo \
+    netcat
 
 
 # Install Azure CLI
