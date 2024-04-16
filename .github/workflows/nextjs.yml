@@ -1,0 +1,28 @@
+name: Build docker image
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      docker_tag:
+        description: 'Tag for docker image'
+    
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4    
+      - name: Build Docker image
+        run: docker build . -t apuetz/pod-troubleshooter:'${{ github.event.inputs.docker_tag }}'
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} 
+      - name: Push Docker image to Docker Hub
+        run: docker push apuetz/pod-troubleshooter:'${{ github.event.inputs.docker_tag }}'
+      - name: Remove Folder
+        run: |
+          rm -rf out
