@@ -22,7 +22,4 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} 
       - name: Push Docker image to Docker Hub
-        run: docker push apuetz/pod-troubleshooter:'${{ github.event.inputs.docker_tag }}'
-      - name: Remove Folder
-        run: |
-          rm -rf out
+        run: docker push apuetz/pod-troubleshooter:'${{ github.event.inputs.docker_tag }}'   
