@@ -1,4 +1,4 @@
-FROM ubuntu/ubuntu:22.04
+FROM library/ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
